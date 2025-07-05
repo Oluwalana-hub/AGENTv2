@@ -1,26 +1,36 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
   <title>Cold Outreach Pro</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
-  <form action="/generate" method="post" class="bg-white p-8 rounded-xl shadow-md w-full max-w-lg">
-    <h1 class="text-2xl font-bold mb-6 text-center text-blue-700">Cold Outreach Pro</h1>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-md">
+    <form action="/generate" method="post" class="bg-white p-8 rounded-lg shadow-md">
+      <h1 class="text-2xl font-bold mb-6 text-center text-blue-600">Cold Outreach Generator</h1>
 
-    <label class="block mb-2 font-medium text-gray-700">Target Niche:</label>
-      <label>
-          <input name="niche" class="w-full p-3 mb-4 border rounded-lg" placeholder="e.g., SaaS startups" required>
-      </label>
+      {% if error %}
+        <div class="mb-4 p-3 bg-red-100 text-red-700 rounded">
+          {{ error }}
+        </div>
+      {% endif %}
 
-      <label class="block mb-2 font-medium text-gray-700">Your Offer:</label>
-      <label>
-          <input name="offer" class="w-full p-3 mb-6 border rounded-lg" placeholder="e.g., Get 30 leads in 14 days" required>
-      </label>
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-2">Target Niche:</label>
+        <input type="text" name="niche" class="w-full px-3 py-2 border rounded"
+               placeholder="e.g., SaaS startups" required value="{{ niche or '' }}">
+      </div>
 
-      <button class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition">
-      Generate Campaign 🚀
-    </button>
-  </form>
+      <div class="mb-6">
+        <label class="block text-gray-700 mb-2">Your Offer:</label>
+        <input type="text" name="offer" class="w-full px-3 py-2 border rounded"
+               placeholder="e.g., Get 30 leads in 14 days" required value="{{ offer or '' }}">
+      </div>
+
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition">
+        Generate Campaign 🚀
+      </button>
+    </form>
+  </div>
 </body>
 </html>
